@@ -34,7 +34,7 @@ npm install -g grunt-cli
 ```
 {
 	"name": "project-name",
-	"author": "Dmitry Shvalyov <dshvalyov@igsystems.ru>",
+	"author": "Dmitry Shvalyov <*@*>",
 	"devDependencies": {
 		"grunt": "~0.4.0",
 		"grunt-contrib-cssmin": "latest",
