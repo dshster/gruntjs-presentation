@@ -136,9 +136,27 @@ grunt.registerTask('default', ['cssmin:production']);
 
 **static mappings**
 
+``'lib/source.js'``, ``'lib/module/engine.js'``
+
 **dynamic mappings**
 
+``'lib/*.js'``, ``'lib/*/*.js'``, ``'lib/**/engine.js'``
 
+###  templates
+
+Подстановка значений в текстовые переменные ``<% %>``, например: ``<%= grunt.template.today('yyyy-mm-dd') %>``. Значения подставляемые через шаблоны так же могут быть и массивами и объектами.
+
+Например подстановка значения ``name`` из загруженного файла ``package.json``
+
+```
+options: {
+  banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+},
+dist: {
+  src: 'src/<%= pkg.name %>.js',
+  dest: 'dist/<%= pkg.name %>.min.js'
+}
+```
 
 # Ссылки
 
