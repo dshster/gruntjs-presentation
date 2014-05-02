@@ -14,7 +14,7 @@ package.json - описание модулей и зависимостей дл�
 
 https://www.npmjs.org/doc/json.html
 
-## Установка
+## Установка и настройка
 
 ### nodejs, npm
 
@@ -29,7 +29,7 @@ npm install -g grunt-cli
 
 ###  package.json
 
-В корневой папке рабочего проекта создать ``package.json`` со списком используемых модулей (включая модуль gruntjs):
+В корневой папке рабочего проекта создать ``package.json`` со списком используемых модулей (включая модуль grunt):
 
 ```
 {
@@ -79,6 +79,7 @@ grunt.registerTask('default', []);
 ```
 
 ###### Конфигурация проекта
+
 с загрузкой данных о проекте из файла ``package.json``
 ```
 grunt.initConfig({
@@ -86,15 +87,37 @@ grunt.initConfig({
 });
 ```
 
-###### Конфигурация модулей
+###### Конфигурация модуля
 
 **cssmin**
 
 ```
 cssmin: {
+    options: {
+        banner: "/* minified css file */",
+        report: "gzip"
+    },
+    files: {
+        "styles.min.css": ["style-one.css", "style-two.css"]
+    }
+}
+```
+Если необходимо добавить несколько вариантов параметров модуля, например ``production``, ``development``, ``testing``, то добавляем дополнительные секции:
+
+```
+cssmin: {
     production: {
         options: {
-            banner: "/* minified css file */",
+            banner: "/* production css file */",
+            report: "gzip"
+        },
+        files: {
+            "styles.min.css": ["style-one.css", "style-two.css"]
+        }
+    },
+    development: {
+        options: {
+            banner: "/* development css file */",
             report: "gzip"
         },
         files: {
@@ -103,6 +126,19 @@ cssmin: {
     }
 }
 ```
+Вызов конкретной секции - ``cssmin:production`` или ``cssmin:development``, если при вызове задачи секция не указана вызывается первая секция:
+
+```
+grunt.registerTask('default', ['cssmin:production']);
+```
+
+###  file mappings
+
+**static mappings**
+
+**dynamic mappings**
+
+
 
 # Ссылки
 
